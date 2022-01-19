@@ -1,5 +1,7 @@
 import './App.css';
 import PokemonList  from './components/PokemonList';
+import FavoritesList  from './components/FavoritesList';
+
 import React, {Component} from 'react';
 
 class App extends Component {
@@ -40,7 +42,6 @@ class App extends Component {
   // sort Pokemon results alphabetically
   sortPokemon() {
     const sortedData = this.state.items;
-
     sortedData.sort((a, b) => a.name.localeCompare(b.name));
     this.setState({
       items: sortedData
@@ -90,15 +91,11 @@ class App extends Component {
             <button onClick={this.sortPokemon}>Sort Alphabetically</button>
           </header>
 
-        <div className="data">
-          <div className="spacer"></div>
-          <PokemonList list={items} addFavorite={this.addFavorite} /> 
-          
-          <div className="favorites">
-            <h2>Favorites List</h2>
-            {favorites.map((item, i) => <p>{item.name}</p>)}
+          <div className="data">
+            <PokemonList list={items} addFavorite={this.addFavorite} /> 
+            
+            <FavoritesList list={favorites} addFavorite={this.addFavorite} />
           </div>
-        </div>
           
         </div>
       );

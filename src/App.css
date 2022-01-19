@@ -21,16 +21,7 @@
   display: flex; 
   align-items: flex-start;
   padding: 2rem;
-}
-
-
-.spacer, .favorites {
-  flex: 0 0 25%;
-  max-width: 25%;
-}
-
-.favorites {
-  border: 1px solid #2E3F61;
+  justify-content: center;
 }
 
 

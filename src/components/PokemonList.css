@@ -2,12 +2,14 @@
     flex: 0 0 50%;
     max-width: 50%;
     list-style-type: none;
-
+    margin-top: 0;
+    padding-left: 0;
+    padding: 1rem;
 }
 
 .pokemon-card {
     border: 1px solid #999;
-    margin: 1rem;
+    margin: 1rem 0;
     position: relative;
 }
 
