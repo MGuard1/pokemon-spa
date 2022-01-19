@@ -1,0 +1,26 @@
+.pokemon {
+    flex: 0 0 50%;
+    max-width: 50%;
+    list-style-type: none;
+
+}
+
+.pokemon-card {
+    border: 1px solid #999;
+    margin: 1rem;
+    position: relative;
+}
+
+.pokemon-card h2 {
+    text-transform: capitalize;
+}
+
+.pokemon-card button {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 1rem;
+    height: 100%;
+    color: #000;
+}
