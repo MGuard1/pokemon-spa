@@ -10,6 +10,8 @@ class App extends Component {
       isLoaded: false,
       items: []
     };
+    this.sortPokemon = this.sortPokemon.bind(this);
+
   }
 
   componentDidMount() {
@@ -33,6 +35,16 @@ class App extends Component {
       )
   }
 
+  // sort Pokemon results alphabetically
+  sortPokemon() {
+    const sortedData = this.state.items
+      .sort((a, b) => a.name.localeCompare(b.name)
+      );
+    this.setState({
+      items: sortedData
+    })
+  }
+
   render() {
     const { error, isLoaded, items } = this.state;
     if (error) {
@@ -44,6 +56,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <img src="/pokeapi_256.png" className="App-logo" alt="logo" />
+            <button onClick={this.sortPokemon}>Sort Alphabetically</button>
           </header>
 
           <div className="pokemon">
