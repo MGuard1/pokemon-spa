@@ -9,7 +9,6 @@ class App extends Component {
     super(props);
     this.state = {
       error: null,
-      isLoaded: false,
       items: [],
       favorites: []
     };
@@ -26,13 +25,11 @@ class App extends Component {
           // Add a favorited property to the object
           const data = response.results.map(obj => ({ ...obj, favorited: false }))
           this.setState({
-            isLoaded: true,
             items: data
           });
         },
         (error) => {
           this.setState({
-            isLoaded: true,
             error
           });
         }
@@ -48,6 +45,7 @@ class App extends Component {
     })
   }
 
+  // add or remove item from favorites 
   addFavorite(i) {
     const { favorites } = this.state;
     let newData = this.state.items;
@@ -77,11 +75,9 @@ class App extends Component {
 
 
   render() {
-    const { error, isLoaded, items, favorites } = this.state;
+    const { error, items, favorites } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
     } else {
       return (
         <div className="App">

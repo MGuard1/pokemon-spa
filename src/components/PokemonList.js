@@ -5,10 +5,10 @@ import starFilled from './star-filled.svg';
 function PokemonList(props) {
 
   return (
-    <ul className="pokemon">
+    <ul className="pokemon" >
         {props.list.map((item, id) => {
         return (
-          <li key={id} className="pokemon-card">
+          <li key={id} className="pokemon-card" data-testid="pokemon-card">
             <button onClick={() => props.addFavorite(item)}>
             {item.favorited ?
               <img src={starFilled} className="star filled" />
