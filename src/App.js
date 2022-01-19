@@ -8,9 +8,11 @@ class App extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
+      items: [],
+      favorites: []
     };
     this.sortPokemon = this.sortPokemon.bind(this);
+    this.addFavorite = this.addFavorite.bind(this);
 
   }
 
@@ -38,12 +40,26 @@ class App extends Component {
   // sort Pokemon results alphabetically
   sortPokemon() {
     const sortedData = this.state.items
-      .sort((a, b) => a.name.localeCompare(b.name)
-      );
+      .sort((a, b) => a.name.localeCompare(b.name));
     this.setState({
       items: sortedData
     })
   }
+
+  addFavorite(i) {
+    const { favorites } = this.state;
+
+    // if the favorites array already includes the item, remove it
+    if (favorites.includes(i)) {
+      this.setState({ favorites: favorites.filter((item) => item !== i )});
+    } else {
+      this.setState({
+        favorites: [...favorites, i]
+      });
+    }
+    console.log(this.state.favorites);
+  }
+
 
   render() {
     const { error, isLoaded, items } = this.state;
@@ -55,13 +71,19 @@ class App extends Component {
       return (
         <div className="App">
           <header className="App-header">
-            <img src="/pokeapi_256.png" className="App-logo" alt="logo" />
+            <img src="/pokeapi_256.png" className="App-logo" alt="PokeAPI logo" />
             <button onClick={this.sortPokemon}>Sort Alphabetically</button>
           </header>
 
+        <div className="data">
           <div className="pokemon">
-          {items.map((item, i) => <Pokemon name={item.name} key={i} />)}
+            <Pokemon list={this.state.items} addFavorite={this.addFavorite} />
           </div>
+          <div className="favorites">
+            <Pokemon list={this.state.favorites}></Pokemon>
+          </div>
+        </div>
+          
         </div>
       );
     }

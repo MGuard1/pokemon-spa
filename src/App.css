@@ -1,16 +1,43 @@
+
+@media (prefers-reduced-motion) {
+  button {
+    transition: none;
+  }
+}
 .App {
   text-align: center;
 }
 
 .App-header {
   padding: 1rem;
+  text-align: center;
 }
 .App-logo {
   width: 20vw;
   max-width: 300px;
   min-width: 200px;
 }
+.data {
+  display: flex;
+}
 .pokemon {
   max-width: 50vw;
   margin: 0 auto;
+}
+button {
+  display: block;
+  margin: 1rem auto;
+  background-color: #2E3F61;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: background-color .25s ease-in-out;
+
+}
+button:hover, button:focus {
+  background-color: #445b88;
+  transition: background-color .25s ease-in-out;
 }
