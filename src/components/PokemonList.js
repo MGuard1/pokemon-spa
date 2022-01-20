@@ -5,17 +5,19 @@ import starFilled from './star-filled.svg';
 function PokemonList(props) {
 
   return (
-    <ul className="pokemon" >
+    <ul className="pokemon">
         {props.list.map((item, id) => {
         return (
           <li key={id} className="pokemon-card" data-testid="pokemon-card">
-            <button onClick={() => props.addFavorite(item)}>
             {item.favorited ?
-              <img src={starFilled} className="star filled" />
+              <button aria-label={`select to remove ${item.name} from favorites`} onClick={() => props.addFavorite(item)}>
+                <img src={starFilled} className="star filled" alt="" />
+              </button>
               :
-              <img src={star} className="star" />
+              <button aria-label={`add ${item.name} to favorites`} onClick={() => props.addFavorite(item)}>
+                <img src={star} className="star" alt="" />
+              </button>
             }
-            </button>
             <h2>{item.name}</h2>
           </li>
         );
