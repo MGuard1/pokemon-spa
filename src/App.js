@@ -9,14 +9,17 @@ class App extends Component {
     super(props);
     this.state = {
       error: null,
+      isLoading: true,
       items: [],
       favorites: []
     };
     this.sortPokemon = this.sortPokemon.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
+    this._isMounted = false;
   }
 
   componentDidMount() {
+    this._isMounted = true;
     // grab data from the api using AJAX
     fetch("https://pokeapi.co/api/v2/pokemon")
       .then(res => res.json())
@@ -24,7 +27,8 @@ class App extends Component {
         (response) => {
           // Add a favorited property to the object
           const data = response.results.map(obj => ({ ...obj, favorited: false }))
-          this.setState({
+          this._isMounted && this.setState({
+            isLoading: false,
             items: data
           });
         },
@@ -34,6 +38,10 @@ class App extends Component {
           });
         }
       )
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   // sort Pokemon results alphabetically
@@ -75,9 +83,11 @@ class App extends Component {
 
 
   render() {
-    const { error, items, favorites } = this.state;
+    const { error, isLoading, items, favorites } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
+    } else if (isLoading) {
+      return <div>Loading...</div>;
     } else {
       return (
         <div className="App">
